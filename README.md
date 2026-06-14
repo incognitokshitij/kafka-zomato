@@ -50,7 +50,7 @@ It's a hands-on example of Kafka's **pub/sub fan-out**: one producer, many consu
 Clone the repo and install dependencies:
 
 ```bash
-git clone https://github.com/<your-username>/kafka-zomato.git
+git clone https://github.com/incognitokshitij/kafka-zomato.git
 cd kafka-zomato
 npm install
 ```
