@@ -1,0 +1,17 @@
+{
+  "name": "kafka-zomato",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "admin": "node admin.js",
+    "start": "concurrently \"node producer.js\" \"node consumer-user.js\" \"node consumer-analytics.js\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "concurrently": "^9.2.1",
+    "kafkajs": "^2.2.4"
+  }
+}
