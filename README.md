@@ -24,6 +24,7 @@ It's a hands-on example of Kafka's **pub/sub fan-out**: one producer, many consu
 
 - **Topic:** `rider_location`
 - **Message shape:** `{ riderId, lat, lng, timestamp }`
+- **Retention:** 3 hours — old GPS pings are auto-deleted by Kafka after this window.
 - Each consumer is in a **different consumer group**, so both receive every message independently.
 
 ---
@@ -79,7 +80,9 @@ You should see `kafka-zomato-kafka-1` and `kafka-zomato-zookeeper-1` running, wi
 npm run admin
 ```
 
-This creates the `rider_location` topic and prints the list of topics.
+This creates the `rider_location` topic with a **3-hour retention** (`retention.ms = 10800000`) and prints the list of topics.
+
+> If the topic already exists, `createTopics` won't update retention. To change retention on an existing topic, either delete it first or use `admin.alterConfigs()`.
 
 ### 3. Start the producer + consumers
 
@@ -148,7 +151,7 @@ You're on a newer (KRaft-only) image. This repo pins Confluent **7.4.4** in `doc
 Kafka isn't up yet. Wait ~10 seconds after `docker compose up -d` for it to finish booting, or check `docker logs kafka-zomato-kafka-1`.
 
 **Topic already exists error from `admin.js`**
-Safe to ignore — it just means you already ran it.
+Safe to ignore — it just means you already ran it. Note: rerunning `admin.js` won't change the retention on an existing topic.
 
 ---
 

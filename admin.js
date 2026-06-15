@@ -12,11 +12,14 @@ const run = async () => {
             {
                 topic: 'rider_location',
                 numPartitions: 1,
-                replicationFactor: 1
+                replicationFactor: 1,
+                configEntries: [
+                    { name: 'retention.ms', value: String(3 * 60 * 60 * 1000) }
+                ]
             }
         ]
     })
-    console.log('✅ Topic created: rider_location')
+    console.log('✅ Topic created: rider_location (retention: 3 hours)')
 
     const topics = await admin.listTopics()
     console.log('📋 All topics:', topics)
